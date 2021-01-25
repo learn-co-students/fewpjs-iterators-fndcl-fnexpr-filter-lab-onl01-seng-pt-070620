@@ -1,21 +1,19 @@
-const findMatching = (drivers, string) => {
-    return drivers.filter(drivers.toLowerCase() === string)
+const { match } = require("sinon");
+
+function findMatching(drivers, string) {
+    return drivers.filter(function(driver) {
+        return driver.toLowerCase().indexOf(string.toLowerCase()) !== -1
+    })
 }
 
-function fuzzyMatch(arr, query) {
-    return arr.filter(function(el) {
-        return el.toLowerCase().indexOf(query.toLowerCase()) !== -1
+function fuzzyMatch(drivers, string) {
+    return drivers.filter(function(driver) {
+        return driver.startsWith(string)
     })
   }
 
-// or 
-
-const fuzzyMatch = (arr, query) => {
-    return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) !== -1)
-  }
-
 function matchName(drivers, name) {
-    return drivers.filter(function(driver) {
+    return drivers.filter(function (driver) {
         return driver.name === name
     })
 }
